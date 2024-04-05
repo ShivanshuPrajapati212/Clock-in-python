@@ -1,19 +1,20 @@
 from tkinter import *
-from datetime import datetime
+from tkinter.ttk import *
+
+from time import strftime
 
 root = Tk()
+root.title("Clock")
 
-root.geometry("1080x720")\
-
-while True:
-    now = datetime.now()
-    current_hour = now.strftime("%I")
-    current_minute = now.strftime("%M")
-    current_second = now.strftime("%S")
-    am_pm = now.strftime("%p")
-
-    time_label = Label(text=f"{current_hour}:{current_minute}:{current_second}",font="comicsansm 180 bold",bg="black",fg="white",padx=2000,pady=2000)
-    time_label.pack(anchor='center',fill=X)
+def time():
+    string = strftime('%H:%M:%S %p')
+    label.config(text=string)
+    label.after(1000,time)
 
 
-    root.mainloop()
+
+label = Label(root,font=('Comicsansm',80),background="black",foreground="cyan",padding=2000)
+label.pack(anchor='center',side='top')
+time()
+
+mainloop()
